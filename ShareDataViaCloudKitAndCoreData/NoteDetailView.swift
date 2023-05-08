@@ -63,6 +63,9 @@ struct NoteDetailView: View {
                             // 先出现弹窗，后生成ckshare，用户体验会更好些
 //                            openSharingController(note: note)
                             // 生成ckshare后弹窗
+                            // The pop-up window appears first, then ckshare is generated, the user experience will be better
+                            // openSharingController(note: note)
+                                                         // popup window after generating ckshare
                             Task.detached {
                                 await createShare(note)
                             }
