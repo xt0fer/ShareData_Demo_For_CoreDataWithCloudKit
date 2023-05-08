@@ -51,12 +51,15 @@ class CloudSharingCoordinator:NSObject,UICloudSharingControllerDelegate{
         guard let note = note else {return}
         if !stack.isOwner(object: note) {
             stack.deleteNote(note)
-            print("删除本地共享数据")
+            print("删除本地共享数据 - Delete local shared data")
         }
         else {
             // 应该处理掉ckshare,目前不起作用。已提交feedback，希望官方提供正式的恢复方式。
             // 目前我的处理思路是，先对停止共享的托管对象（例如note）在本地进行Deep Copy（包含所有关系数据）
             // 然后调用purgeObjectsAndRecordsInZone删除网络上的共享自定义Zone
+            // ckshare should be disposed of, currently does not work. Feedback has been submitted, and we hope that the official will provide a formal recovery method.
+            // At present, my processing idea is to perform a deep copy (including all relational data) locally on the managed object (such as note) that has stopped sharing
+            // Then call purgeObjectsAndRecordsInZone to delete the shared custom Zone on the network
         }
     }
     static let shared = CloudSharingCoordinator()
